@@ -3,7 +3,6 @@ import os
 import re
 
 RUTA_USUARIOS = "Data/usuarios_simulados.csv"
-
 CRITERIOS = {
     "longitud": lambda p: len(p) >= 8,
     "mayúsculas": lambda p: any(c.isupper() for c in p),
