@@ -5,7 +5,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()  
-API_KEY_GEMINI = os.getenv("API_KEY_CLIMA")
+API_KEY_CLIMA = os.getenv("API_KEY_CLIMA")
 RUTA_HISTORIAL = "Data/historial_global.csv"
 
 def consultar_clima(usuario):
@@ -31,7 +31,7 @@ def obtener_clima_ciudad(ciudad):
     url = "https://api.openweathermap.org/data/2.5/weather"
     parametros = {
         "q": ciudad,
-        "appid": API_KEY,
+        "appid": API_KEY_CLIMA,
         "units": "metric",
         "lang": "es"
     }
@@ -41,7 +41,10 @@ def obtener_clima_ciudad(ciudad):
         respuesta.raise_for_status()
         return respuesta.json()
     except requests.exceptions.HTTPError as e:
-        print(f"Error HTTP: {e}")
+        if respuesta.status_code == 404:
+            print("❌ Ciudad no encontrada. Verificá el nombre e intentá de nuevo.")
+        else:
+            print(f"Error HTTP: {e}")
         return None
     except requests.exceptions.RequestException:
         print("No se pudo conectar con la API del clima.")

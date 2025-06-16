@@ -4,11 +4,11 @@ import re
 
 RUTA_USUARIOS = "Data/usuarios_simulados.csv"
 CRITERIOS = {
-    "longitud": lambda p: len(p) >= 8,
-    "mayúsculas": lambda p: any(c.isupper() for c in p),
-    "minúsculas": lambda p: any(c.islower() for c in p),
-    "números": lambda p: any(c.isdigit() for c in p),
-    "especiales": lambda p: re.search(r"[!@#$%^&*(),.?\":{}|<>]", p)
+    "longitud suficiente": lambda p: len(p) >= 8,
+    "mayúsculas suficientes": lambda p: any(c.isupper() for c in p),
+    "minúsculas suficicientes": lambda p: any(c.islower() for c in p),
+    "números suficientes": lambda p: any(c.isdigit() for c in p),
+    "caracteres especiales suficientes": lambda p: re.search(r"[!@#$%^&*(),.?\":{}|<>]", p)
 }
 
 def validar_contraseña(passwd):
